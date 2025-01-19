@@ -13,6 +13,6 @@ def split_data(data, test_size=0.2, random_state=42):
         	tuple: X_train, X_test, y_train, y_test (training and testing data and labels).
 	"""
 	
-	X = data.drop(columns=['species'])
+	x = data.drop(columns=['species'])
 	y = data['species']
 	return train_test_split(X, y, test_size=test_size, random_state=random_state)
