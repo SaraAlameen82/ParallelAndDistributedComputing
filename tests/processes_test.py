@@ -1,16 +1,33 @@
-from src.print_numbers import print_numbers
+from src.tasks import *
+import multiprocessing
+import time
+import random
+import string
 
-# Testing multiprocessing
-def test_processes():
+
+def run_processes(num_letters = 1000, num_numbers = 1000):
+    num_letters = 1000 // 2
+    num_numbers = 1000 // 2
+    total_start_time = time.time
+    
     # Create two processes
-    process1 = multiprocessing.Process(target=print_numbers, args=("Process-1", 1))
-    process2 = multiprocessing.Process(target=print_numbers, args=("Process-2", 2))
+    process_numbers1 = multiprocessing.Process(target=print_numbers, args=("Process-1", 1))
+    process_numbers2 = multiprocessing.Process(target=print_numbers, args=("Process-2", 2))
+    
+    process_letters1 = multiprocessing.Process(target=print_numbers, args=("Process-1", 1))
+    process_letters2 = multiprocessing.Process(target=print_numbers, args=("Process-2", 2))
 
     # Start the processes
-    process1.start()
-    process2.start()
+    process_numbers1.start()
+    process_numbers2.start()
+
+    process_letters1.start()
+    process_letters2.start()
 
     # Wait for all processes to complete
-    process1.join()
-    process2.join()
+    process_numbers1.join()
+    process_numbers2.join()
+
+    process_letters1.join()
+    process_letters2.join()
     print("Exiting the Program")
