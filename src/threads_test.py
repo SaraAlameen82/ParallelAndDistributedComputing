@@ -11,11 +11,11 @@ def run_threads(num_letters = 1000, num_numbers = 1000):
     start_time = time.time()
     
     # Create two processes
-    process_numbers1 = multiprocessing.Process(target=add_random_numbers, args=("Process-1", 1))
-    process_numbers2 = multiprocessing.Process(target=add_random_numbers, args=("Process-2", 2))
+    process_numbers1 = multiprocessing.Process(target=add_random_numbers, args=(num_numbers))
+    process_numbers2 = multiprocessing.Process(target=add_random_numbers, args=(num_numbers))
     
-    process_letters1 = multiprocessing.Process(target=join_random_letters, args=("Process-1", 1))
-    process_letters2 = multiprocessing.Process(target=join_random_letters, args=("Process-2", 2))
+    process_letters1 = multiprocessing.Process(target=join_random_letters, args=(num_letters))
+    process_letters2 = multiprocessing.Process(target=join_random_letters, args=(num_letters))
 
     # Start the processes
     process_numbers1.start()
