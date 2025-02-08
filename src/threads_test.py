@@ -1,5 +1,5 @@
 from src.tasks import *
-import multiprocessing
+import threading
 import time
 import random
 import string
@@ -11,11 +11,11 @@ def run_threads(num_letters = 1000, num_numbers = 1000):
     start_time = time.time()
     
     # Create two processes
-    process_numbers1 = multiprocessing.Process(target=add_random_numbers, args=(num_numbers))
-    process_numbers2 = multiprocessing.Process(target=add_random_numbers, args=(num_numbers))
+    process_numbers1 = threading.thread(target=add_random_numbers, args=(num_numbers))
+    process_numbers2 = threading.thread(target=add_random_numbers, args=(num_numbers))
     
-    process_letters1 = multiprocessing.Process(target=join_random_letters, args=(num_letters))
-    process_letters2 = multiprocessing.Process(target=join_random_letters, args=(num_letters))
+    process_letters1 = threading.thread(target=join_random_letters, args=(num_letters))
+    process_letters2 = threading.thread(target=join_random_letters, args=(num_letters))
 
     # Start the processes
     process_numbers1.start()
