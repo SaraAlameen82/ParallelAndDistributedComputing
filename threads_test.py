@@ -5,7 +5,7 @@ import random
 import string
 
 
-def run_processes(num_letters = 1000, num_numbers = 1000):
+def run_threads(num_letters = 1000, num_numbers = 1000):
     num_letters = 1000 // 2
     num_numbers = 1000 // 2
     start_time = time.time
