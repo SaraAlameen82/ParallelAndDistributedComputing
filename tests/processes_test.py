@@ -8,7 +8,7 @@ import string
 def run_processes(num_letters = 1000, num_numbers = 1000):
     num_letters = 1000 // 2
     num_numbers = 1000 // 2
-    total_start_time = time.time
+    start_time = time.time
     
     # Create two processes
     process_numbers1 = multiprocessing.Process(target=print_numbers, args=("Process-1", 1))
@@ -30,4 +30,6 @@ def run_processes(num_letters = 1000, num_numbers = 1000):
 
     process_letters1.join()
     process_letters2.join()
-    print("Exiting the Program")
+
+    end_time = time.time()
+    print(f"Total time for processes: {end_time - start_time} seconds.")
