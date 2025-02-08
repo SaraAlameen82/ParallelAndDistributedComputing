@@ -1,5 +1,5 @@
-from src.sequential_tasks import *
-from src.threads_tasks import *
+from src.sequential_tests import *
+from src.threads_tests import *
 
 run_sequential()
 run_thresds()
