@@ -4,3 +4,4 @@ from src.processes_test import *
 
 run_sequential()
 run_threads()
+run_processes()
