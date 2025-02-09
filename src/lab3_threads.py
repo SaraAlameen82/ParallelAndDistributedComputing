@@ -1,23 +1,41 @@
-import threading
 import time
+import threading
 
-from src.tasks import join_random_letters, add_random_letters
+# Function to calculate the sum of a range of numbers
+def calculate_partial_sum(start, end, result, index):
+    result[index] = sum(range(start, end + 1))
 
-# Testing threads
-def run_threads():
-    total_start_time = time.time()
-    # Create threads for both functions
-    thread_one = threading.Thread(target=join_random_letters)
-    thread_two = threading.Thread(target=join_random_letters)
-    
-    # Start the threads
-    thread_one.start()
-    thread_two.start()
-    
-    # Wait for all threads to complete
-    thread_one.join()
-    thread_two.join()
-    total_end_time = time.time()
-    
-    print(f"Total time taken for threads: {total_end_time - total_start_time} seconds")
-    
+# Given large number
+n = 1000000
+num_threads = 4
+chunk_size = n // num_threads
+
+# List to store results from threads
+results = [0] * num_threads
+threads = []
+
+# Measure the execution time
+start_time = time.time()
+
+# Create and start threads
+for i in range(num_threads):
+    start = i * chunk_size + 1
+    end = (i + 1) * chunk_size if i != num_threads - 1 else n
+    thread = threading.Thread(target=calculate_partial_sum, args=(start, end, results, i))
+    threads.append(thread)
+    thread.start()
+
+# Wait for all threads to complete
+for thread in threads:
+    thread.join()
+
+# Calculate total sum
+total_sum = sum(results)
+end_time = time.time()
+
+# Calculate execution time
+execution_time = end_time - start_time
+
+# Print the sum and execution time
+print(f"Sum: {total_sum}")
+print(f"Execution Time: {execution_time} seconds")
