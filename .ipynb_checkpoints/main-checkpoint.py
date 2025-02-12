@@ -72,20 +72,5 @@ if __name__ == "__main__":
     print(f"Amdahl's Law Speedups - Threading: {amdahls_threading_speedup:.2f}, Multiprocessing: {amdahls_multiprocessing_speedup:.2f}")
     print(f"Gustafson's Law Speedups - Threading: {gustafsons_threading_speedup:.2f}, Multiprocessing: {gustafsons_multiprocessing_speedup:.2f}\n")
 
-# Discussion on Performance Differences and Challenges:
-"""
-c. Performance Differences:
-   - Threading may perform worse than multiprocessing for CPU-bound tasks due to the Global Interpreter Lock (GIL).
-   - Multiprocessing achieves true parallelism by utilizing multiple CPU cores.
-
-d. Challenges in Implementing Parallelism:
-   - Managing shared data between threads/processes can be complex.
-   - Overhead of creating threads/processes may negate performance gains for small tasks.
-   - Addressed by using thread-safe data structures or multiprocessing shared memory.
-
-e. When to Choose Threading vs Multiprocessing:
-   - Use threading for I/O-bound tasks where the GIL is not a bottleneck.
-   - Use multiprocessing for CPU-bound tasks to utilize multiple cores effectively.
-"""
 
     
