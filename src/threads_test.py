@@ -32,4 +32,7 @@ def run_threads(num_letters = 1000, num_numbers = 1000):
     process_letters2.join()
 
     end_time = time.time()
-    print(f"Total time for processes: {end_time - start_time} seconds.")
+    excution_time = end_time - start_time
+    print(f"Total time for threads: {excution_time} seconds.")
+    
+    return excution_time
