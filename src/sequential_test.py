@@ -10,4 +10,7 @@ def run_sequential(num_letters = 1000, num_numbers = 1000):
   add_random_numbers(num_numbers)
   
   end_time = time.time()
-  print(f"Total sequential time: {end_time - start_time} seconds.")
+  excution_time = end_time - start_time
+  print(f"Total time for sequential: {excution_time} seconds.")
+    
+  return excution_time
