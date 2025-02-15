@@ -1,4 +1,5 @@
-from src.tasks import join_random_letters, add_random_numbers
+from src.tasks import join_random_letters 
+from src.tasks import add_random_numbers
 import time
 
 
@@ -11,6 +12,6 @@ def run_sequential(num_letters = 1000, num_numbers = 1000):
   
   end_time = time.time()
   excution_time = end_time - start_time
-  print(f"Total time for sequential: {excution_time} seconds.")
+  # print(f"Total time for sequential: {excution_time} seconds.")
     
   return excution_time
