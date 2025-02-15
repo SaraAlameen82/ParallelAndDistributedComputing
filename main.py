@@ -18,50 +18,51 @@ def speedup_gustafsons_law(p, n):
 
 
 # Measuring Execution Times
-t_seq = run_sequential()
-t_threads = run_threads()
-t_processes = run_processes()
+if __name__ == '__main__':
+    t_seq = run_sequential(1000000, 1000000)
+    t_threads = run_threads(1000000, 1000000)
+    t_processes = run_processes(1000000, 1000000)
 
-# Calculating Speedup
-speedup_threads = calculate_speedup(t_seq, t_threads)
-speedup_processes = calculate_speedup(t_seq, t_processes)
+    # Calculating Speedup
+    speedup_threads = calculate_speedup(t_seq, t_threads)
+    speedup_processes = calculate_speedup(t_seq, t_processes)
 
-# Calculating Efficiency
-num_threads = 2
-num_processes = 2
-efficiency_threads = calculate_efficiency(speedup_threads, num_threads)
-efficiency_processes = calculate_efficiency(speedup_processes, num_processes)
+    # Calculating Efficiency
+    num_threads = 4
+    num_processes = 4
+    efficiency_threads = calculate_efficiency(speedup_threads, num_threads)
+    efficiency_processes = calculate_efficiency(speedup_processes, num_processes)
 
-# Calculate Speedup using Amdahl’s and Gustafson’s Laws
-p = 0.9  # Assume 90% of the code is parallelizable
+    # Calculate Speedup using Amdahl’s and Gustafson’s Laws
+    p = 0.9  # Assume 90% of the code is parallelizable
 
-# Amdahl's Law
-amdahl_threads = speedup_amdahls_law(p, num_threads)
-amdahl_processes = speedup_amdahls_law(p, num_processes)
+    # Amdahl's Law
+    amdahl_threads = speedup_amdahls_law(p, num_threads)
+    amdahl_processes = speedup_amdahls_law(p, num_processes)
 
-# Gustafson's Law
-gustafson_threads = speedup_gustafsons_law(p, num_threads)
-gustafson_processes = speedup_gustafsons_law(p, num_processes)
+    # Gustafson's Law
+    gustafson_threads = speedup_gustafsons_law(p, num_threads)
+    gustafson_processes = speedup_gustafsons_law(p, num_processes)
 
-print("\n Performance Test \n")
+    print("\nPerformance Test \n")
 
-print(f"Sequential execution time: {t_seq}")
-print(f"Threads execution time: {t_threads}")
-print(f"Processes execution time: {t_processes}\n")
+    print(f"Sequential execution time: {t_seq}")
+    print(f"Threads execution time: {t_threads}")
+    print(f"Processes execution time: {t_processes}\n")
 
-# Speedup results
-print(f"Threads Speedup: {speedup_threads}")
-print(f"Processes Speedup: {speedup_processes}\n")
+    # Speedup results
+    print(f"Threads Speedup: {speedup_threads}")
+    print(f"Processes Speedup: {speedup_processes}\n")
 
-# Efficiency results
-print(f"Threads Efficiency: {efficiency_threads}")
-print(f"Processes Efficiency: {efficiency_processes}\n")
+    # Efficiency results
+    print(f"Threads Efficiency: {efficiency_threads}")
+    print(f"Processes Efficiency: {efficiency_processes}\n")
 
-# Amdahl's Law results
-print(f"Threads speedup using Amdahl's Law: {amdahl_threads}")
-print(f"Processes speedup using Amdahl's Law: {amdahl_processes}\n")
+    # Amdahl's Law results
+    print(f"Threads speedup using Amdahl's Law: {amdahl_threads}")
+    print(f"Processes speedup using Amdahl's Law: {amdahl_processes}\n")
 
-# Gustafson's Law results
-print(f"Threads speedup using Gustafson's Law: {gustafson_threads}")
-print(f"Processes speedup using Gustafson's Law: {gustafson_processes}")
+    # Gustafson's Law results
+    print(f"Threads speedup using Gustafson's Law: {gustafson_threads}")
+    print(f"Processes speedup using Gustafson's Law: {gustafson_processes}")
 
