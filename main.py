@@ -6,7 +6,7 @@ from src.square import square
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 # size -> number of processes
-size = comm.Get_size
+size = comm.Get_size()
 
 print(f"Rank {rank} \nSize {size}")
 
@@ -37,3 +37,5 @@ if rank == 0:
     print(f"The results are: {results}")
 
 request.wait()
+
+
