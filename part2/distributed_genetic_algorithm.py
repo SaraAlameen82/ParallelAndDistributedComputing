@@ -6,20 +6,19 @@ from genetic_algorithms_functions import calculate_fitness, \
     generate_unique_population
 
 def main():
-    # Initialize MPI
+    # Initializing MPI
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     size = comm.Get_size()
 
-    # Only the master (rank 0) loads the data
+    # Only rank 0 can load the data
     if rank == 0:
-        # Load the distance matrix
+        # Loading the distance dataset and converting it into a numpy array
         distance_matrix = pd.read_csv('city_distances.csv').to_numpy()
         
-        # Parameters
+        # Initializing Parameters 
         num_nodes = distance_matrix.shape[0]
         population_size = 10000
-        num_tournaments = 4
         mutation_rate = 0.1
         num_generations = 200
         stagnation_limit = 5

@@ -14,19 +14,27 @@ def calculate_fitness(route,
         - float: The negative total distance traveled (negative because we want to minimize distance).
            Returns a large negative penalty if the route is infeasible.
     """
-    # Initializing total distance
+    
     total_distance = 0
     
-    # Calculate distance between the current and next cities in the route
     for i in range(len(route) - 1):
-        # Get current and next city indices
+        # Getting the index for the current and next city
         current_city = route[i]
         next_city = route[i + 1]
         
-        # Add distance between current and next city
+        # Check if route is infeasible (distance is 100000)
+        if distance_matrix[current_city][next_city] >= 100000.0:
+            # Return the large negative penalty for infeasible routes
+            return -1e6 
+        
+        # Getting the distance between current and next city
         total_distance += distance_matrix[current_city][next_city]
     
-    # Add distance from last city back to starting city (0)
+    # Add distance from the last city back to the starting city 
+    if distance_matrix[route[-1]][0] >= 100000.0:
+        # Return large negative penalty for infeasible route
+        return -1e6 
+    
     total_distance += distance_matrix[route[-1]][0]
     
     # Return negative value for minimization
@@ -51,15 +59,15 @@ def select_in_tournament(population,
     """
     selected = []
     
-    # Run the specified number of tournaments
+    # Running the specified number of tournaments
     for _ in range(number_tournaments):
         # Randomly select tournament_size individuals
         tournament_indices = np.random.choice(len(population), tournament_size, replace=False)
         tournament_scores = scores[tournament_indices]
         
-        # Find the winner (best fitness) in this tournament
-        winner_idx = tournament_indices[np.argmax(tournament_scores)]
-        selected.append(population[winner_idx])
+        # Find the best fitness in this tournament
+        best_fitness = tournament_indices[np.argmin(tournament_scores)]
+        selected.append(population[best_fitness])
     
     return selected
 

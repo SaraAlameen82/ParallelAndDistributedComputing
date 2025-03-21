@@ -29,7 +29,7 @@ stagnation_counter = 0
 # Main GA loop
 for generation in range(num_generations):
     # Evaluate calculate_fitness
-    calculate_fitness_values = np.array([calculate_fitness(route, distance_matrix) for route in population])
+    calculate_fitness_values = np.array([-calculate_fitness(route, distance_matrix) for route in population])
 
     # Check for stagnation
     current_best_calculate_fitness = np.min(calculate_fitness_values)
@@ -73,10 +73,10 @@ for generation in range(num_generations):
     print(f"Generation {generation}: Best calculate_fitness = {current_best_calculate_fitness}")
 
 # Update calculate_fitness_values for the final population
-calculate_fitness_values = np.array([calculate_fitness(route, distance_matrix) for route in population])
+calculate_fitness_values = np.array([-calculate_fitness(route, distance_matrix) for route in population])
 
 # Output the best solution
 best_idx = np.argmin(calculate_fitness_values)
 best_solution = population[best_idx]
 print("Best Solution:", best_solution)
-print("Total Distance:", calculate_fitness(best_solution, distance_matrix))
+print("Total Distance:", -calculate_fitness(best_solution, distance_matrix))
